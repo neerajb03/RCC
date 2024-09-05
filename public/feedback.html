@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Feedback</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+    * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #023047;
+    color: #f6bd60;
+
+    position: relative;
+ /* Reset default margin */
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for spacing */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.logo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+.text {
+    vertical-align: middle;
+}
+
+.cont-1 {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    margin: 2px auto 0;
+    top: 12px;
+    right: 370px;
+    position: fixed;
+    width: 710px;
+    height: 50px;
+    background-color:black;
+    border-radius: 8px;
+    font-size: 0;
+}
+
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+a:nth-child(1) {
+    width: 100px;
+}
+
+a:nth-child(2) {
+    width: 110px;
+}
+
+a:nth-child(3) {
+    width: 100px;
+}
+
+a:nth-child(4) {
+    width: 160px;
+}
+
+a:nth-child(5) {
+    width: 120px;
+}
+
+a:nth-child(6) {
+    width: 120px;
+}
+
+nav .start-home,
+a:nth-child(1):hover~.animation {
+    width: 100px;
+    left: 0;
+    background-color: #1abc9c;
+}
+
+nav .start-aconnect,
+a:nth-child(2):hover~.animation {
+    width: 110px;
+    left: 100px;
+    background-color: #e74c3c;
+}
+
+nav .start-house,
+a:nth-child(3):hover~.animation {
+    width: 100px;
+    left: 210px;
+    background-color: #3498db;
+}
+
+nav .start-feedback,
+a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 310px;
+    background-color: #9b59b6;
+}
+
+nav .start-review,
+a:nth-child(5):hover~.animation {
+    width: 120px; /* Corrected width */
+    left: 470px; /* Adjusted left value */
+    background-color: #e67e22;
+}
+
+nav .start-contact,
+a:nth-child(6):hover~.animation {
+    width: 140px; /* Corrected width */
+    left: 590px; /* Adjusted left value */
+    background-color: #b3dd1b;
+}
+    .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          }
+
+fieldset {
+            margin-bottom: 50px;
+            padding: 5px; /* Adjust the padding */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            border: 1px solid #ccc; /* Add border style */
+            margin: auto; /* Center the fieldset */
+            width :50%;
+        }
+    
+        .peer-feedback {
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		background-color: #f9f9f9;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	.peer-feedback strong {
+		font-weight: bold;
+	} 
+    .wrapper{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+button{
+  font-family: 'Ubuntu', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  width: 170px;
+  height: 40px;
+  line-height: 1;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 3px solid #8C82FC;
+  background: #fff;
+  color: #8C82FC;
+  border-radius: 40px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all .35s;
+}
+
+button:hover{
+  background: #8C82FC;
+  color: #fff;
+}
+
+button span{
+  opacity: 1;
+  visibility: visible;
+  transition: all .35s;
+}
+
+.success{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .35s;
+}
+
+.success svg{
+  width: 20px;
+  height: 20px;
+  fill: yellowgreen;
+  transform-origin: 50% 50%;
+  transform: translateY(-50%) rotate(0deg) scale(0);
+  transition: all .35s;
+}
+
+button.is_active{
+  width: 40px;
+  height: 40px;
+}
+
+button.is_active .success{
+  opacity: 1;
+  visibility: visible;
+}
+
+button.is_active .success svg{
+  margin-top: 50%;
+  transform: translateY(-50%) rotate(720deg) scale(1);
+}
+
+button.is_active span{
+  opacity: 0;
+  visibility: hidden;
+}
+.textareas {
+  width: 53vw;
+  line-height: 0.9;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+textarea {
+  width: 98%;
+  height: 13vh;
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: left;
+  border: 1px solid #000;
+  resize: vertical; /* Allow vertical resizing */
+  overflow: auto; /* Add scrollbars if the content overflows */
+  box-sizing: border-box;
+}
+select {
+  font-size: 16px; /* You can adjust the font size as per your requirement */
+  padding: 10px; /* You can adjust the padding as per your requirement */
+  width: 200px; /* You can adjust the width as per your requirement */
+}
+article {
+  --img-scale: 0.5;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background:  #219ebc;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 10 / 6.5;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.articles {
+  display: flex;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 24px;
+  gap: 24px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.articles > article {
+  min-width: 320px; /* Minimum width for each card */
+}
+
+.article-wrapper {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  width: 100%; /* Set the width of the card */
+  height: 260px; /* Set the height of the card */
+}
+
+figure {
+  width: 130%;
+  height: 100%;
+  overflow: hidden;
+}
+
+figure img {
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: contain; 
+}
+.profile-pic {
+  position: fixed;
+  top: 12px;
+  right: 15px;
+  z-index: 20000;
+  border-radius: 50%;
+  width: 57px;
+  height: 55px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 70px;
+  right: 50px;
+  background-color: #f2c513;
+  border-radius: 4px;
+  padding: 8px 0;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f9f9f9 ;
+  transform: translateX(5px);
+  transition: transform 0.5s
+}
+.submitted-feedback {
+  border: 1px solid #003049;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #219ebc;
+  max-width: 40%;
+  
+  color:#121212;
+}
+
+  </style>
+</head>
+
+<body>
+      
+<div style="background-color: #219ebc; border-radius: 40px ; position:relative; padding: 1px;">
+  <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+  <div class="dropdown-menu" id="dropdownMenu">
+    <!-- <a href="#">Username</a> -->
+    <a href="index.html">Logout</a>
+</div>
+        <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg" alt="Logo" class="logo" >
+        <strong style="color:#000;">RSET Community Centre</strong>
+ <nav>
+  <a href="home.html">Home</a>
+  <a href="aconnect.html">Query Hub</a>
+  <a href="Rentals.html">Home rent</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="FReview.html">Restaurant</a>
+  <a href="contact.html">Contact</a>
+  <div class="animation start-feedback"></div>
+</nav>
+</div>
+ <div>
+        <br><br>
+        <center>
+        <h2>Feedback</h2>
+        </center>
+        <form action="/submit_feedback" method="post">
+        <div class="container">
+            <form action="#">
+                <fieldset>
+                    <legend>What are you submitting feedback about?</legend>
+                    <br>
+                        <input type="radio" name="topic" id="topic" value="class" >
+                        <label for="class">A class</label>
+                        <br><br>
+                        <input type="radio" name="topic" id="topic" value="professor" text="">
+                        <label for="professor">A professor</label>
+                        <br><br>
+                        <input type="radio" name="topic" id="topic" value="campus-facilities">
+                        <label for="campus-facilities">Campus facilities</label>
+                        <br><br>
+                        <input type="radio" name="topic" id="topic" value="other">
+                        <label for="other">Other</label>
+                        <br><br>
+                </fieldset>
+        </div>
+        <div>
+        <center>
+            <br><br>
+        <form>
+            <div class="box">
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester">
+                <option value=""></option>
+                <option value="s1" id="semester">S1</option>
+                <option value="s2" id="semester">S2</option>
+                <option value="s3" id="semester">S3</option>
+                <option value="s4" id="semester">S4</option>
+                <option value="s5">S5</option>
+                <option value="s6">S6</option>
+                <option value="s7">S7</option>
+                <option value="s8">S8</option>
+                <option value="other">Others</option>
+            </select><br>
+            </div>
+            <h3>Give your feedback here</h3>
+            <section class="textareas" id="message" name="message">
+              <textarea placeholder="Type here.." id="message" name="message"></textarea>
+           </section>
+           
+           
+           
+            <br>
+            <div class="wrapper">
+  <button class="">
+    <span>Submit</span>
+    <div class="success">
+    <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  viewBox="0 0 29.756 29.756" style="enable-background:new 0 0 29.756 29.756;" xml:space="preserve">
+      
+	<path d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173   c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752   c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z"/>
+ </svg>
+      </div>
+  </button>
+  <br>
+</form>
+</div>
+<br><br>
+<div id="feedback-container"></div>
+<script>
+  document.getElementById("profilePic").addEventListener("click", function() {
+    document.getElementById("dropdownMenu").classList.toggle("show");
+  });
+  // Fetch feedback data from the server
+  fetch("/get_feedback")
+            .then(response => response.json())
+            .then(data => {
+                // Render feedback data in HTML
+                const feedbackContainer = document.getElementById("feedback-container");
+                data.forEach(feedback => {
+                    const feedbackDiv = document.createElement("div");
+                    feedbackDiv.classList.add("submitted-feedback");
+                    feedbackDiv.innerHTML = `
+                        <p><strong>Topic:</strong> ${feedback.topic}</p>
+                        <p><strong>Semester:</strong> ${feedback.semester}</p>
+                        <p><strong>Message:</strong> ${feedback.message}</p>
+                        <hr>
+                    `;
+                    feedbackContainer.appendChild(feedbackDiv);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching feedback data:", error);
+            });
+</script>
+      
+</body>
+
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Food Reviews</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+    * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #669bbc;
+    position: relative;
+ /* Reset default margin */
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for spacing */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #669bbc;
+}
+
+.logo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 100%;
+    
+}
+
+.text {
+    vertical-align: middle;
+}
+
+.cont-1 {
+    display: flex;
+    align-items: center;
+}
+nav {
+    margin: 2px auto 0;
+    top: 12px;
+    right: 370px;
+    position: fixed;
+    width: 710px;
+    height: 50px;
+    background-color:black;
+    border-radius: 8px;
+    font-size: 0;
+    position: fixed;
+
+}
+
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+a:nth-child(1) {
+    width: 100px;
+}
+
+a:nth-child(2) {
+    width: 110px;
+}
+
+a:nth-child(3) {
+    width: 100px;
+}
+
+a:nth-child(4) {
+    width: 160px;
+}
+
+a:nth-child(5) {
+    width: 120px;
+}
+
+a:nth-child(6) {
+    width: 120px;
+}
+
+nav .start-home,
+a:nth-child(1):hover~.animation {
+    width: 100px;
+    left: 0;
+    background-color: #1abc9c;
+}
+
+nav .start-aconnect,
+a:nth-child(2):hover~.animation {
+    width: 110px;
+    left: 100px;
+    background-color: #e74c3c;
+}
+
+nav .start-house,
+a:nth-child(3):hover~.animation {
+    width: 100px;
+    left: 210px;
+    background-color: #3498db;
+}
+
+nav .start-feedback,
+a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 310px;
+    background-color: #9b59b6;
+}
+
+nav .start-review,
+a:nth-child(5):hover~.animation {
+    width: 120px; /* Corrected width */
+    left: 470px; /* Adjusted left value */
+    background-color: #e67e22;
+}
+
+nav .start-contact,
+a:nth-child(6):hover~.animation {
+    width: 140px; /* Corrected width */
+    left: 590px; /* Adjusted left value */
+    background-color: #b3dd1b;
+}
+    .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          }
+
+fieldset {
+            margin-bottom: 50px;
+            padding: 5px; /* Adjust the padding */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            border: 1px solid #ccc; /* Add border style */
+            margin: auto; /* Center the fieldset */
+            width :50%;
+        }
+    
+        .peer-feedback {
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		background-color: #f9f9f9;
+		margin-left: 20px;
+		margin-right: 20px;
+    box-shadow: 10px 5px 5px rgb(160, 181, 189);
+
+	}
+
+	.peer-feedback strong {
+		font-weight: bold;
+	} 
+    .wrapper{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+}
+
+main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100%;
+      background-color:#003049;
+    }
+
+    .swiper {
+      width: 80%;
+      max-width: 1200px;
+      height: 75%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .swiper-wrapper {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .swiper-slide {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    .swiper-slide-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .swiper-slide-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .rating {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .swiper-slide-content {
+      padding: 20px;
+      background-color: #ffeba7;
+      height: 400px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+    #review {
+  width: 53vw;
+  line-height: 0.9;
+  background-color:#edf0f1;
+  color: black;
+  text-align: center;
+}
+
+textarea {
+  width: 98%;
+  height: 13vh;
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: left;
+  border: 1px solid #000;
+  resize: vertical; /* Allow vertical resizing */
+  overflow: auto; /* Add scrollbars if the content overflows */
+  box-sizing: border-box;
+}
+.success{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .35s;
+}
+
+.success svg{
+  width: 20px;
+  height: 20px;
+  fill: yellowgreen;
+  transform-origin: 50% 50%;
+  transform: translateY(-50%) rotate(0deg) scale(0);
+  transition: all .35s;
+}
+.profile-pic {
+  position: fixed;
+  top: 12px;
+  right: 15px;
+  z-index: 20000;
+  border-radius: 50%;
+  width: 57px;
+  height: 55px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 70px;
+  right: 50px;
+  background-color: #f2c513;
+  border-radius: 4px;
+  padding: 8px 0;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f9f9f9 ;
+  transform: translateX(5px);
+  transition: transform 0.5s
+}
+.rating-box {
+  position: relative;
+  background: #b0e3f7;
+  padding: 25px 30px 35px; /* Adjusted padding */
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  max-width: 400px; /* Added max-width */
+  margin: auto; /* Center the rating box */
+}
+
+.rating-box header {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.stars i {
+  color: #e6e6e6;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ff9c1a;
+}
+strong{
+  color:white;
+}
+.submit-button {
+  background-color: #0f4877; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 15px 32px; /* Padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Display as inline block */
+  font-size: 16px; /* Font size */
+  margin: 4px 2px; /* Margin */
+  cursor: pointer; /* Pointer cursor */
+  border-radius: 10px; /* Rounded corners */
+}
+.review-section {
+  text-align: center;
+}
+
+.review-header {
+  margin-bottom: 10px;
+}
+
+.review-label {
+  font-weight: bold;
+}
+
+.select-label {
+  margin-right: 10px;
+}
+
+.select-dropdown {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 16px;
+}
+
+/* Center the select dropdown */
+.review-select {
+  display: inline-block;
+}
+.custom-select {
+  padding: 10px; /* Adjust padding */
+  font-size: 16px; /* Adjust font size */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border radius */
+  background-color: #f9f9f9; /* Add background color */
+  width: 200px; /* Adjust width */
+  color: #333; /* Text color */
+}
+
+/* Style the dropdown arrow */
+.custom-select::after {
+  content: '\25BC'; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Make the arrow unclickable */
+}
+
+/* Style on hover */
+.custom-select:hover {
+  border-color: #999; /* Adjust border color on hover */
+}
+
+.submitted-review {
+  border: 1px solid #003049;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #003049;
+  max-width: 40%;
+  color:#f8f1f1
+}
+
+  </style>
+  </head>
+
+  <body>
+    <div style="background-color: #003049; border-radius: 40px ; position:relative; padding: 1px;" po>
+    <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+    <div class="dropdown-menu" id="dropdownMenu">
+      <!-- <a href="#">Username</a> -->
+      <a href="index.html">Logout</a>
+  </div>
+            <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg" alt="Logo" class="logo" >
+            <strong >RSET Community Centre</strong>
+     <nav>
+      <a href="home.html">Home</a>
+      <a href="aconnect.html">Query Hub</a>
+      <a href="Rentals.html">Home rent</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="FReview.html">Restaurant</a>
+      <a href="contact.html">Contact</a>
+      <div class="animation start-review"></div>
+    </nav>
+  </div>
+  <div>
+      <br><br>
+      <center>
+          <h2>Resaurants Nearby</h2>
+      </center>
+      <main>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                  <img src="https://b.zmtcdn.com/data/pictures/8/19713428/43cdc6e46ee513dc62ff9e5c563435b9.jpg" alt="Restaurant 1">
+                  <div class="rating">4.5</div>
+                </div>
+                <div class="swiper-slide-content">
+                  <h2>Caesar's Cafe</h2>
+                  <p>Cafe, Beverages, Desserts, Fast Food, Salad, Burger, Italian</p>
+                  <p>₹500 for two people (approx.)</p>
+                  <p>Rajagri Valley kakkanad. </p>
+                  <a class="show-more" href="https://www.justdial.com/Ernakulam/Caesars-Cafe-Near-Rajagiri-College-Kakkanad/0484PX484-X484-180216190424-D5F3_BZDET" target="_blank">Read More</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                  <img src="https://i.ytimg.com/vi/8aYGLPWI4RY/maxresdefault.jpg" alt="Restaurant 2">
+                  <div class="rating">4.0</div>
+                </div>
+                <div class="swiper-slide-content">
+                  <h2>The Shack Bistro</h2>
+                  <p>Continental, Fast Food, Asian, Bubble Tea, Shake, Beverages</p>
+                  <p>₹1,000 for two people (approx.)</p>
+                  <p>Time kid's, The shack bistro, Infopark Rd, Kusumagiri, Kakkanad, Kerala 682030</p>
+                  <a class="show-more" href="https://www.eazydiner.com/kochi/the-shack-bistro-kakkanad-kochi-686159" target="_blank">Read More</a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                  <img src="https://b.zmtcdn.com/data/pictures/1/19344601/112fa767348b33e1de6680d9231d91c6.jpg?fit=around|750:500&crop=750:500;*,*" alt="Restaurant 3">
+                  <div class="rating">4.8</div>
+                </div>
+                <div class="swiper-slide-content">
+                  <h2>Cafe Since'97</h2>
+                  <p>Chinese, Fast Food, Beverages, Sichuan</p>
+                  <p>₹300 for two people (approx.)</p>
+                  <p>Rajagiri Valley, Chittethukara, Kochi, Kakkanad, Kerala 682039</p>
+                  <a class="show-more" href="https://restaurant-guru.in/Since-97-Ernakulam" target="_blank">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+          var swiper = new Swiper(".swiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            coverflowEffect: {
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5
+            },
+            keyboard: {
+              enabled: true
+            },
+            mousewheel: {
+              thresholdDelta: 70
+            },
+            spaceBetween: 30,
+            loop: false,
+            breakpoints: {
+              640: {
+                slidesPerView: 2
+              },
+              1024: {
+                slidesPerView: 3
+              }
+            }
+          });
+      
+          swiper.slideTo(1, false, false);
+        </script>
+  </div>
+  <center>
+    </div>
+    <!-- Review Form -->
+    <form id="reviewForm">
+      <br><br>
+      <label for="restaurant" style="font-size: large;">Select Restaurant: </label>
+      <select id="restaurant" name="restaurant" class="custom-select">
+        <option value="Caesar's Cafe">Caesar's Cafe</option>
+        <option value="The Shack Bistro">The Shack Bistro</option>
+        <option value="Cafe Since'97">Cafe Since'97</option>
+      </select>      
+      <br><br>
+      <label for="rating" style="font-size: 20px; color: black;">Rating:</label>
+<input type="number" id="rating" name="rating" min="1" max="5" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100px; font-size: 16px; color: #333; background-color: #ebebeb; transition: border-color 0.3s ease;">
+
+      <br><br>
+      <label for="review"><h3>Give your reviews here:</h3></label>
+      <textarea id="review" name="review" placeholder="Type here.."></textarea>
+      <br><br>
+      <input type="submit" name="Submit Review" value="Submit Review" class="submit-button">
+    </form>
+    
+    <br><br>
+    <centre>
+      <div class="review-section">
+        <div class="review-header">
+          <b><label class="review-label"><h3>REVIEWS :</h3></label></b>
+        </div>
+        <div class="review-select">
+          <label for="resto" style="font-size:large;" class="select-label" >Select Restaurant:</label>
+          <select id="resto" name="resto" class="select-dropdown">
+            <option value="Caesar's Cafe">Caesar's Cafe</option>
+            <option value="The Shack Bistro">The Shack Bistro</option>
+            <option value="Cafe Since'97">Cafe Since'97</option>
+          </select>
+        </div>
+      </div>
+      
+    </centre>
+    <br><br>
+
+    <!-- Review Display -->
+    <div id="reviewsContainer"></div>
+
+    <script>
+      document.getElementById("profilePic").addEventListener("click", function () {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+      });
+      const stars = document.querySelectorAll(".stars i");
+
+
+      // Function to fetch reviews for the selected restaurant
+      async function fetchReviewsForRestaurant(restaurant) {
+        try {
+          const response = await fetch(`/api/reviews?restaurant=${restaurant}`);
+          const reviews = await response.json();
+          displayReviews(reviews);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+      document.getElementById('reviewForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch('/api/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const result = await response.json();
+          alert(result.message);
+          // Refresh reviews after submission
+          // fetchReviews();
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      });
+
+      async function fetchReviews() {
+        try {
+          const response = await fetch('/api/reviews');
+          const reviews = await response.json();
+          displayReviews(reviews);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+      function displayReviews(reviews) {
+        const selectedRestaurant = document.getElementById('resto').value;
+        const filteredReviews = reviews.filter(review => review.restaurant === selectedRestaurant);
+
+        const reviewsContainer = document.getElementById('reviewsContainer');
+        reviewsContainer.innerHTML = '';
+
+        filteredReviews.forEach((review) => {
+          const reviewElement = document.createElement('div');
+           reviewElement.classList.add('submitted-review');
+          reviewElement.innerHTML = `
+        <strong>Restaurant: </strong>${review.restaurant}<br>
+        <strong>Rating: </strong>${review.rating}<br>
+        <strong>Review: </strong>${review.review}<br><br>
+      `;
+          reviewsContainer.appendChild(reviewElement);
+        });
+      }
+      // Event listener for restaurant selection
+      document.getElementById('resto').addEventListener('change', (event) => {
+        const selectedRestaurant = event.target.value;
+        fetchReviewsForRestaurant(selectedRestaurant);
+      });
+
+      // Initial fetch for reviews of the default selected restaurant
+      fetchReviewsForRestaurant('Caesar\'s Cafe');
+    </script>
+</body>

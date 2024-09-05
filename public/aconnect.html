@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .stars {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .star {
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .one {
+            color: rgb(255, 0, 0);
+        }
+
+        .two {
+            color: rgb(255, 106, 0);
+        }
+
+        .three {
+            color: rgb(251, 255, 120);
+        }
+
+        .four {
+            color: rgb(255, 255, 0);
+        }
+
+        .five {
+            color: rgb(24, 159, 14);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #023047;
+            position: relative;
+            /* Reset default margin */
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            /* Add padding for spacing */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .logo {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 100%;
+        }
+
+        .text {
+            vertical-align: middle;
+        }
+
+        .cont-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            margin: 2px auto 0;
+            top: 12px;
+            right: 325px;
+            position: fixed;
+            width: 710px;
+            height: 50px;
+            background-color: black;
+            border-radius: 8px;
+            font-size: 0;
+        }
+
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 16px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+
+        a:nth-child(1) {
+            width: 100px;
+        }
+
+        a:nth-child(2) {
+            width: 110px;
+        }
+
+        a:nth-child(3) {
+            width: 100px;
+        }
+
+        a:nth-child(4) {
+            width: 160px;
+        }
+
+        a:nth-child(5) {
+            width: 120px;
+        }
+
+        a:nth-child(6) {
+            width: 120px;
+        }
+
+        nav .start-home,
+        a:nth-child(1):hover~.animation {
+            width: 100px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+
+        nav .start-aconnect,
+        a:nth-child(2):hover~.animation {
+            width: 110px;
+            left: 100px;
+            background-color: #e74c3c;
+        }
+
+        nav .start-house,
+        a:nth-child(3):hover~.animation {
+            width: 100px;
+            left: 210px;
+            background-color: #3498db;
+        }
+
+        nav .start-feedback,
+        a:nth-child(4):hover~.animation {
+            width: 160px;
+            left: 310px;
+            background-color: #9b59b6;
+        }
+
+        nav .start-review,
+        a:nth-child(5):hover~.animation {
+            width: 120px;
+            /* Corrected width */
+            left: 470px;
+            /* Adjusted left value */
+            background-color: #e67e22;
+        }
+
+        nav .start-contact,
+        a:nth-child(6):hover~.animation {
+            width: 140px;
+            /* Corrected width */
+            left: 590px;
+            /* Adjusted left value */
+            background-color: #b3dd1b;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        .peer-feedback {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .peer-feedback strong {
+            font-weight: bold;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .reply {
+            background-color: #f0f0f0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .reply .header {
+            font-size: 12px;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+
+        .reply .content {
+            font-size: 14px;
+        }
+
+        .replyForm {
+            margin-top: 10px;
+        }
+
+        .replyForm textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .replyForm button {
+            background-color: #ff4500;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .replyForm button:hover {
+            background-color: #ff6a41;
+        }
+
+        .textareas {
+            width: 53vw;
+            line-height: 0.9;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        textarea {
+            width: 98%;
+            height: 13vh;
+            padding: 1em;
+            font-size: 1.5em;
+            text-align: left;
+            border: 1px solid #000;
+            resize: vertical;
+            /* Allow vertical resizing */
+            overflow: auto;
+            /* Add scrollbars if the content overflows */
+            box-sizing: border-box;
+        }
+
+        select {
+            font-size: 16px;
+            /* You can adjust the font size as per your requirement */
+            padding: 10px;
+            /* You can adjust the padding as per your requirement */
+            width: 200px;
+            /* You can adjust the width as per your requirement */
+        }
+
+        article {
+            --img-scale: 0.5;
+            --title-color: black;
+            --link-icon-translate: -20px;
+            position: relative;
+            border-radius: 16px;
+            box-shadow: none;
+            background: #95c0b5;
+            transform-origin: center;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+        }
+
+        figure {
+            margin: 0;
+            padding: 0;
+            aspect-ratio: 10 / 6.5;
+            overflow: hidden;
+        }
+
+        article img {
+            max-width: 100%;
+            transform-origin: center;
+            transform: scale(var(--img-scale));
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .article-body {
+            padding: 24px;
+        }
+
+        article:has(:hover, :focus) {
+            --img-scale: 1.1;
+            --title-color: #28666e;
+            --link-icon-translate: 0;
+            --link-icon-opacity: 1;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        }
+
+        .articles {
+            display: flex;
+            max-width: 100%;
+            margin-inline: auto;
+            padding-inline: 24px;
+            gap: 24px;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+        }
+
+        .articles>article {
+            min-width: 320px;
+            /* Minimum width for each card */
+        }
+
+        .article-wrapper {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 16px;
+            width: 100%;
+            /* Set the width of the card */
+            height: 260px;
+            /* Set the height of the card */
+        }
+
+        figure {
+            width: 130%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        figure img {
+            height: 100%;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+
+        .container {
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: fit-content;
+            width: 80%
+        }
+
+        .posts {
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: fit-content;
+        }
+
+        .post-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .post-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            color: #666666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .post-content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .textbox-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .textbox-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .textbox {
+            width: 100%;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            resize: vertical;
+            /* Allow vertical resizing */
+            min-height: 50px;
+            /* Set a minimum height */
+            margin-bottom: 10px;
+        }
+
+        .profile-pic {
+            position: fixed;
+            top: 12px;
+            right: 15px;
+            z-index: 20000;
+            border-radius: 50%;
+            width: 57px;
+            height: 55px;
+            cursor: pointer;
+            transition: all 200ms linear;
+        }
+
+        .dropdown-menu {
+            position: fixed;
+            top: 70px;
+            right: 50px;
+            background-color: #f2c513;
+            border-radius: 4px;
+            padding: 8px 0;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+            transition: transform 0.5s
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div style="background-color: #39b0f1; border-radius: 40px ; position:relative; padding: 1px;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic"
+                id="profilePic">
+            <div class="dropdown-menu" id="dropdownMenu">
+                <!-- <a href="#">Username</a> -->
+                <a href="index.html">Logout</a>
+            </div>
+            <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg"
+                alt="Logo" class="logo">
+            <strong>RSET Community Centre</strong>
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="aconnect.html">Query Hub</a>
+                <a href="Rentals.html">Home rent</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="FReview.html">Restaurant</a>
+                <a href="contact.html">Contact</a>
+                <div class="animation start-aconnect"></div>
+
+            </nav>
+        </div>
+
+        <br>
+        <div class="container">
+            <h1 style="text-align: center;">Ask your Queries here.</h1>
+            <h3 style="text-align: center;">Get responses from fellow Alumni.</h3>
+            <form id="postForm" onsubmit="submitPost()">
+                <label for="flair">What is your query about?</label><br>
+                <select name="flair" id="flair">
+                    <option value="academic">Academic</option>
+                    <option value="career">Career</option>
+                    <option value="hStudies">Higher Studies</option>
+                </select>
+                <br>
+
+                <div class="textbox-container">
+                    <input type="text" class="textbox" id="postTitle" placeholder="Title"><br>
+                    <textarea class="textbox" id="postContent" placeholder="Write your post here..."></textarea>
+                    <button type="button" onclick="submitPost()">Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+        <br>
+
+        <div class="post-container" id="postContainer">
+            <!-- Your post content will be dynamically added here -->
+        </div>
+
+        <!-- JavaScript code for handling form submission and replies -->
+        <script>
+            let postIdCounter = 1; // Initialize a counter for unique post IDs
+
+            function submitPost() {
+                // Get form data
+                const flair = document.getElementById('flair').value;
+                const title = document.getElementById('postTitle').value;
+                const postContent = document.getElementById('postContent').value;
+
+                // Generate a unique post ID
+                const postId = `post-${postIdCounter++}`;
+
+                // Create a new post element
+                const postElement = document.createElement('div');
+                postElement.className = 'post-container';
+                postElement.id = postId; // Set the post ID
+                postElement.innerHTML = `
+                <h1 class="post-title">${title}</h1>
+                <h2>${flair}</h2>
+                <div class="post-meta">
+                    Submitted by <span class="username">Username</span> on <span class="post-date">${getCurrentDate()}</span>
+                </div>
+                <div class="post-content">
+                    <p>${postContent}</p>
+                </div>
+                <div class="post-actions">
+                    <button onclick="toggleReplyForm('${postId}-replyForm')">Reply</button>
+                    <div id="${postId}-replyForm" class="replyForm" style="display: none;">
+                        <form onsubmit="submitReply(event, '${postId}-replyForm', '${postId}-replies')">
+                            <textarea id="${postId}-replyContent" name="replyContent"
+                                placeholder="Write your reply here..."></textarea><br>
+                            <button type="submit">Post Reply</button>
+                        </form>
+                    </div>
+                    <div id="${postId}-replies" class="replies">
+                    </div>
+                </div>
+            `;
+
+                // Append the new post to the post container
+                const postContainer = document.getElementById('postContainer');
+                postContainer.appendChild(postElement);
+
+                // Reset the form after submission
+                document.getElementById('postForm').reset();
+            }
+
+            function getCurrentDate() {
+                const currentDate = new Date();
+                return currentDate.toLocaleDateString();
+            }
+
+            function toggleReplyForm(formId) {
+                const form = document.getElementById(formId);
+                if (form.style.display === 'none') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            function submitReply(event, formId, repliesId) {
+                event.preventDefault();
+                const form = document.getElementById(formId);
+                const replyContent = form.querySelector('textarea[name="replyContent"]').value;
+                const repliesContainer = document.getElementById(repliesId);
+
+                // Create a new reply element
+                const replyDiv = document.createElement('div');
+                replyDiv.className = 'reply';
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'header';
+                headerDiv.innerHTML = '<p>u/You • Just now</p>';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'content';
+                contentDiv.innerHTML = '<p>' + replyContent + '</p>';
+                replyDiv.appendChild(headerDiv);
+                replyDiv.appendChild(contentDiv);
+
+                // Append the reply element to the replies container
+                repliesContainer.appendChild(replyDiv);
+
+                // Reset the reply form
+                form.querySelector('textarea[name="replyContent"]').value = '';
+            }
+            document.getElementById("profilePic").addEventListener("click", function () {
+                document.getElementById("dropdownMenu").classList.toggle("show");
+            });
+        </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ring Animation</title>
+  <style>
+   @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .logo {
+            display: inline-block;
+            width: 60px;
+            height: 100px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 100%;
+        }
+
+        .text {
+            vertical-align: middle;
+        }
+
+        .cont-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 55px;
+            border-radius: 50%;
+        }
+
+        nav {
+            margin: 8px auto 0;
+            top: 10px;
+            right: 580px;
+            position: fixed;
+            background-color: black;
+            border-radius: 8px;
+            font-size: 0;
+        }
+
+      
+
+        
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        fieldset {
+            margin-bottom: 50px;
+            padding: 5px;
+            /* Adjust the padding */
+            border-radius: 8px;
+            /* Add border-radius for rounded corners */
+            border: 1px solid #ccc;
+            /* Add border style */
+            margin: auto;
+            /* Center the fieldset */
+            width: 50%;
+        }
+    button {
+            font-family: 'Ubuntu', sans-serif;
+            position: relative;
+            top: 50%;
+            left: 7%;
+            transform: translate(-50%, -50%);
+            width: 170px;
+            height: 30px;
+            line-height: 1;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 2px solid black;
+            background: #fff;
+            color: black;
+            border-radius: 40px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all .35s;
+        }
+
+        button:hover {
+            background: #8C82FC;
+            color: #fff;
+        }
+
+        button span {
+            opacity: 1;
+            visibility: visible;
+            transition: all .35s;
+        }
+
+        .success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .35s;
+        }
+
+        .success svg {
+            width: 20px;
+            height: 20px;
+            fill: yellowgreen;
+            transform-origin: 50% 50%;
+            transform: translateY(-50%) rotate(0deg) scale(0);
+            transition: all .35s;
+        }
+
+        button.is_active {
+            width: 40px;
+            height: 40px;
+        }
+
+        button.is_active .success {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        button.is_active .success svg {
+            margin-top: 50%;
+            transform: translateY(-50%) rotate(720deg) scale(1);
+        }
+
+        button.is_active span {
+            opacity: 0;
+            visibility: hidden;
+        }
+     .logo {
+            width: 70px;
+            height: auto;
+            border-radius: 50px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: black;
+            position: relative;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .filter-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        img {
+            padding: 10px;
+            height: 150px;
+            width: 400px;
+            border-radius: 30px;
+            margin: auto;
+        }
+
+    html, body, .stage, .ring {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      user-select: none;
+     
+    }
+     .img {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      user-select: none;
+     border:2px solid black;
+    }
+
+
+    html, .stage {
+      overflow: hidden;
+      
+    }
+
+    div, svg {
+      position: absolute;
+    }
+
+    .container {
+      perspective: 2000px;
+      width: 300px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+      .pic{
+	padding:20px;
+	width:800px;
+	height:400px;
+	
+}
+.category-label {
+  color: black;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.category-labelw {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+
+  </style>
+</head>
+<body>
+ <div style="background-color: grey; border-radius: 40px ; position:relative; padding:5px;">
+        <img src="https://www.shareicon.net/data/512x512/2016/09/01/822711_user_512x512.png" alt="Profile Picture" class="profile-pic">
+        <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg" alt="Logo" class="logo">
+        <strong>RSET Community Centre</strong>
+        </div>
+<!-- <div>
+<img src="https://www.rajagiritech.ac.in/Home/images/601.png" alt="clg" class="pic" style="display: block; max-width: 100%; max-height: 100%; margin: auto; 
+width:2000px; height:850px;">
+</div> -->
+
+<div class="stage">
+  <div class="container">
+    <div class="ring">
+      <div class="img" style="background-image: url(rset.jpg);   background-size: cover;" onclick="redirect1()">
+	<div class="category-label" >Home</div></div>
+      <div class="img" style="background-image: url(hat.jpg); " onclick="redirect()">
+<div class="category-label" >Query Hub</div></div>
+      <div class="img" style="background-image: url(house.jpg);" onclick="redirect2()">
+<div class="category-label" >Home Renting</div></div>
+       <div class="img" style="background-image: url(feedback.jpg);" onclick="redirect3()">
+<div class="category-label" style="top: 75%;">Feedback</div></div>
+	 <div class="img" style="background-image: url(food.jpg);" onclick="redirect4()">
+<div class="category-label" style="color:white; top: 45%;">Food Review</div></div>
+		 <div class="img" style="background-image: url(contact.jpg);" onclick="redirect5()">
+<div class="category-label" style="top: 20%;" >Contact</div></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  let xPos = 0;
+
+  gsap.timeline()
+    .set('.ring', { rotationY:70, cursor:'grab' }) //set initial rotationY so the parallax jump happens off screen
+    .set('.img',  { // apply transform rotations to each image
+      rotateY: (i)=> i*-36,
+      transformOrigin: '50% 50% 500px',
+      z: -500,
+      backgroundPosition:(i)=>getBgPos(i),
+      backfaceVisibility:'hidden'
+    })
+    .from('.img', {
+      duration:1.5,
+      y:200,
+      opacity:0,
+      stagger:0.1,
+      ease:'expo'
+    })
+    .add(()=>{
+      $('.img').on('mouseenter', (e)=>{
+        let current = e.currentTarget;
+        gsap.to('.img', {opacity:(i,t)=>(t==current)? 1:0.5, ease:'power3'})
+      })
+      $('.img').on('mouseleave', (e)=>{
+        gsap.to('.img', {opacity:1, ease:'power2.inOut'})
+      })
+    }, '-=0.5')
+
+  $(window).on('mousedown touchstart', dragStart);
+  $(window).on('mouseup touchend', dragEnd);
+
+  function dragStart(e){
+    if (e.touches) e.clientX = e.touches[0].clientX;
+    xPos = Math.round(e.clientX);
+    gsap.set('.ring', {cursor:'grabbing'})
+    $(window).on('mousemove touchmove', drag);
+  }
+
+  function drag(e){
+    if (e.touches) e.clientX = e.touches[0].clientX;    
+
+    gsap.to('.ring', {
+      rotationY: '-=' +( (Math.round(e.clientX)-xPos)%360 ),
+      onUpdate:()=>{ gsap.set('.img', { backgroundPosition:(i)=>getBgPos(i) }) }
+    });
+   
+    xPos = Math.round(e.clientX);
+  }
+
+  function dragEnd(e){
+    $(window).off('mousemove touchmove', drag);
+    gsap.set('.ring', {cursor:'grab'});
+  }
+
+  function getBgPos(i){ //returns the background-position string to create parallax movement in each image
+    return ( 100-gsap.utils.wrap(0,360,gsap.getProperty('.ring', 'rotationY')-180-i*36)/360*500 )+'px 0px';
+  }
+function redirect(){
+window.location.href="aconnect.html";
+}
+function redirect2(){
+window.location.href="Rentals.html";
+}
+function redirect3(){
+window.location.href="feedback.html";
+}
+function redirect4(){
+window.location.href="FReview.html";
+}
+function redirect5(){
+window.location.href="contact.html";
+}
+</script>
+
+</body>
+</html>

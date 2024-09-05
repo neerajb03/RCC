@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #023047;
+            color: #f6bd60;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .logo {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+            border-radius: 100%;
+        }
+
+        .text {
+            vertical-align: middle;
+        }
+
+        .cont-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            margin: 2px auto 0;
+            top: 12px;
+            right: 370px;
+            position: fixed;
+            width: 710px;
+            height: 50px;
+            background-color: black;
+            border-radius: 8px;
+            font-size: 0;
+        }
+
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 16px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+
+        a:nth-child(1) {
+            width: 100px;
+        }
+
+        a:nth-child(2) {
+            width: 110px;
+        }
+
+        a:nth-child(3) {
+            width: 100px;
+        }
+
+        a:nth-child(4) {
+            width: 160px;
+        }
+
+        a:nth-child(5) {
+            width: 120px;
+        }
+
+        a:nth-child(6) {
+            width: 120px;
+        }
+
+        nav .start-home,
+        a:nth-child(1):hover~.animation {
+            width: 100px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+
+        nav .start-aconnect,
+        a:nth-child(2):hover~.animation {
+            width: 110px;
+            left: 100px;
+            background-color: #e74c3c;
+        }
+
+        nav .start-house,
+        a:nth-child(3):hover~.animation {
+            width: 100px;
+            left: 210px;
+            background-color: #3498db;
+        }
+
+        nav .start-feedback,
+        a:nth-child(4):hover~.animation {
+            width: 160px;
+            left: 310px;
+            background-color: #9b59b6;
+        }
+
+        nav .start-review,
+        a:nth-child(5):hover~.animation {
+            width: 120px;
+            left: 470px;
+            background-color: #e67e22;
+        }
+
+        nav .start-contact,
+        a:nth-child(6):hover~.animation {
+            width: 140px;
+            left: 590px;
+            background-color: #b3dd1b;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        fieldset {
+            margin-bottom: 50px;
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: auto;
+            width: 50%;
+        }
+
+        .peer-feedback {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .peer-feedback strong {
+            font-weight: bold;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .submitted-feedback {
+            border: 1px solid #003049;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #219ebc;
+            color: #121212;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .profile-pic {
+            position: fixed;
+            top: 12px;
+            right: 15px;
+            z-index: 20000;
+            border-radius: 50%;
+            width: 57px;
+            height: 55px;
+            cursor: pointer;
+            transition: all 200ms linear;
+        }
+
+        .dropdown-menu {
+            position: fixed;
+            top: 70px;
+            right: 50px;
+            background-color: #f2c513;
+            border-radius: 4px;
+            padding: 8px 0;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+            transition: transform 0.5s;
+        }
+
+        h1 {
+            margin-top: 80px;
+            /* Adjust the top margin to account for fixed elements */
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #219ebc; border-radius: 40px; position:relative; padding: 1px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic"
+            id="profilePic">
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#">Admin</a>
+            <a href="index.html">Logout</a>
+        </div>
+        <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg"
+            alt="Logo" class="logo">
+        <strong style="color:#000;">RSET Community Centre</strong>
+        <nav>
+            <a href="users.html">Users</a>
+            <a href="aconnect.html">Query Hub</a>
+            <a href="Rentals.html">Home rent</a>
+            <a href="adminfeed.html">Feedback</a>
+            <a href="adminfreview.html">Restaurant</a>
+            <a href="contact.html">Contact</a>
+            <div class="animation start-feedback"></div>
+        </nav>
+    </div>
+
+    <center>
+        <h1>Admin Panel - Feedback Management</h1>
+        <div id="feedback-container"></div>
+    </center>
+    <script>
+        document.getElementById("profilePic").addEventListener("click", function () {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        });
+
+        function fetchFeedbacks() {
+            fetch('/get_feedback')
+                .then(response => response.json())
+                .then(data => {
+                    const feedbackContainer = document.getElementById('feedback-container');
+                    feedbackContainer.innerHTML = ''; // Clear existing feedbacks
+                    data.forEach(feedback => {
+                        const feedbackDiv = document.createElement('div');
+                        feedbackDiv.classList.add('submitted-feedback');
+                        feedbackDiv.innerHTML = `
+                            <p><strong>Topic:</strong> ${feedback.topic}</p>
+                            <p><strong>Semester:</strong> ${feedback.semester}</p>
+                            <p><strong>Message:</strong> ${feedback.message}</p>
+                            <button class="delete-btn" onclick="deleteFeedback('${feedback._id}', '${feedback.topic}')">Delete</button>
+
+                        `;
+                        feedbackContainer.appendChild(feedbackDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching feedback data:', error);
+                });
+        }
+
+        function deleteFeedback(id, topic) {
+            // Confirm deletion with user
+            const confirmDelete = confirm(`Are you sure you want to delete the feedback with ID: ${id} and topic: ${topic}?`);
+            if (!confirmDelete) {
+                return; // Cancel deletion if user cancels
+            }
+
+            fetch(`/delete_feedback/${id}`, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    fetchFeedbacks(); // Refresh the feedback list
+                })
+                .catch(error => {
+                    console.error('Error deleting feedback:', error);
+                });
+        }
+
+        // Fetch feedbacks on page load
+        fetchFeedbacks();
+
+    </script>
+</body>
+
+</html>

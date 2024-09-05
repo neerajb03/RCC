@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <title>Home Renting</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+        * {
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            /* Add padding for spacing */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .logo {
+    display: inline-block;
+    width: 70px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+        .text {
+            vertical-align: middle;
+        }
+
+        .cont-1 {
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            margin: 8px auto 0;
+            top: 10px;
+            right: 350px;
+            position: fixed;
+            background-color: black;
+            border-radius: 8px;
+            font-size: 0;
+     z-index:10;
+        }
+
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 16px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+
+        a:nth-child(1) {
+            width: 100px;
+        }
+
+        a:nth-child(2) {
+            width: 110px;
+        }
+
+        a:nth-child(3) {
+            width: 100px;
+        }
+
+        a:nth-child(4) {
+            width: 160px;
+        }
+
+        a:nth-child(5) {
+            width: 120px;
+        }
+
+        a:nth-child(6) {
+            width: 120px;
+        }
+
+        nav .start-home,
+        a:nth-child(1):hover~.animation {
+            width: 100px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+
+        nav .start-aconnect,
+        a:nth-child(2):hover~.animation {
+            width: 110px;
+            left: 100px;
+            background-color: #e74c3c;
+        }
+
+        nav .start-house,
+        a:nth-child(3):hover~.animation {
+            width: 100px;
+            left: 210px;
+            background-color: #3498db;
+        }
+
+        nav .start-feedback,
+        a:nth-child(4):hover~.animation {
+            width: 160px;
+            left: 310px;
+            background-color: #9b59b6;
+        }
+
+        nav .start-review,
+        a:nth-child(5):hover~.animation {
+            width: 120px;
+            left: 470px;
+            background-color: #e67e22;
+        }
+
+        nav .start-contact,
+        a:nth-child(6):hover~.animation {
+            width: 140px;
+            left: 590px;
+            background-color: #b3dd1b;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        fieldset {
+            margin-bottom: 50px;
+            padding: 5px;
+            /* Adjust the padding */
+            border-radius: 8px;
+            /* Add border-radius for rounded corners */
+            border: 1px solid #ccc;
+            /* Add border style */
+            margin: auto;
+            /* Center the fieldset */
+            width: 50%;
+        }
+
+        .peer-feedback {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .peer-feedback strong {
+            font-weight: bold;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        button {
+            font-family: 'Ubuntu', sans-serif;
+            position: relative;
+            top: 50%;
+            left: 7%;
+            transform: translate(-50%, -50%);
+            width: 170px;
+            height: 30px;
+            line-height: 1;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 2px solid black;
+            background: #fff;
+            color: black;
+            border-radius: 40px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all .35s;
+        }
+
+        button:hover {
+            background: #8C82FC;
+            color: #fff;
+        }
+
+        button span {
+            opacity: 1;
+            visibility: visible;
+            transition: all .35s;
+        }
+
+        .success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .35s;
+        }
+
+        .success svg {
+            width: 20px;
+            height: 20px;
+            fill: yellowgreen;
+            transform-origin: 50% 50%;
+            transform: translateY(-50%) rotate(0deg) scale(0);
+            transition: all .35s;
+        }
+
+        button.is_active {
+            width: 40px;
+            height: 40px;
+        }
+
+        button.is_active .success {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        button.is_active .success svg {
+            margin-top: 50%;
+            transform: translateY(-50%) rotate(720deg) scale(1);
+        }
+
+        button.is_active span {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 400px;
+            height: 300px;
+            perspective: 1000px;
+            margin-top: 20px;
+   float:left;
+            margin-right:30px;
+   margin-left:50px;
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 900;
+            text-align: center;
+            margin: 0;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 400px;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 350px;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: 1px solid coral;
+            border-radius: 1rem;
+            padding: 20px;
+            box-setting: border-box;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(120deg, #219ebc 30%, rgb(217, 217, 214) 88%, rgb(173, 216, 230) 40%, rgba(173, 216, 230, 1) 60%);
+            color: black;
+            border: 2px solid black;
+            width: 400px;
+            float: left;
+        }
+
+        .flip-card-back {
+            width: 400px;
+            background: linear-gradient(120deg, #219ebc 30%, rgb(217, 217, 214) 88%, rgb(173, 216, 230) 40%, rgba(173, 216, 230, 1) 60%);
+            color: black;
+            border: 2px solid black;
+            transform: rotateY(180deg);
+            float: left;
+        }
+
+        .logo {
+            width: 70px;
+            height: auto;
+            border-radius: 70px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #023047;
+            position: relative;
+            padding: 0;
+	//background-image: url(room.jpg) ;
+	background-size: cover;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+.filter-section {
+    font-family: Arial, sans-serif;
+    background-color:#87CEEB ;
+     border: 1px solid #ccc; 
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	border-color: black;
+}
+
+.filter-section h2 {
+    color: #090707;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-section label {
+    font-weight: bold;
+    color: #0a0505;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.filter-section select,
+.filter-section input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-section input[type="text"]::placeholder {
+    color: #999;
+}
+
+.filter-section button {
+    width: calc(100% - 40px);
+    height: 50px; 
+    padding: 10px;
+    background-color: #003049 ;
+    color: rgb(250, 247, 247);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 260px  ;
+}
+
+.filter-section button:hover {
+    background-color: #0056b3;
+}
+
+.filter-section br {
+    line-height: 1.6;
+}
+
+        img {
+            padding: 20px;
+            height: 150px;
+            width: 400px;
+            border-radius: 30px;
+            margin: auto;
+        }
+        h2,label{
+            color:#ffb703;
+        }
+        .no-property-found {
+            color: rgb(193, 207, 238);
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        .profile-pic {
+  position: fixed;
+  top: 0.05px;
+  right: 4px;
+  z-index: 20000;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 70px;
+  right: 50px;
+  background-color: #f2c513;
+  border-radius: 4px;
+  padding: 8px 0;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f9f9f9 ;
+  transform: translateX(5px);
+  transition: transform 0.5s
+}
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #87CEEB; border: 1px solid black; border-radius: 40px ; position:relative; padding: 1px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+        <div class="dropdown-menu" id="dropdownMenu">
+          <!-- <a href="#">Username</a> -->
+          <a href="index.html">Logout</a>
+      </div>
+            <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg" alt="Logo" class="logo" >
+            <strong>RSET Community Centre</strong>
+        <nav>
+            <a href="home.html">Home</a>
+    <a href="aconnect.html">Query Hub</a>
+    <a href="Rentals.html">Home rent</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="FReview.html">Restaurant</a>
+    <a href="contact.html">Contact</a>
+            <div class="animation start-house"></div>
+        </nav>
+    </div>
+
+    <div class="filter-section">
+        <br><br>
+        <h2>Filter Options</h2>
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <select id="bedrooms" name="bedrooms">
+            <option value="1">1 Bedroom</option>
+            <option value="2">2 Bedrooms</option>
+            <option value="3">3 Bedrooms</option>
+            <option value="4">4 Bedrooms</option>
+            <option value="5">5 Bedrooms</option>
+        </select>
+        <br><br>
+        <label for="cost">Cost Range:</label>
+        <input type="text" id="cost" name="cost" placeholder="Enter cost range"><br><br>
+       
+          <button onclick="applyFilters()">Apply Filters</button>
+
+    </div>
+
+    <!-- Property Listings -->
+    <div id="property-listings">
+        <!-- Filtered properties will be dynamically added here -->
+    </div>
+
+    <script>
+    document.getElementById("profilePic").addEventListener("click", function() {
+    document.getElementById("dropdownMenu").classList.toggle("show");
+  });
+        function applyFilters() {
+            const selectedBedrooms = parseInt(document.getElementById('bedrooms').value);
+            const costRange = parseInt(document.getElementById('cost').value);
+            const properties = [{
+                    title: 'Property 1',
+                    description: 'Vazhakala',
+                    bedrooms: 3,
+                    price:30000 ,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },
+                {
+                    title: 'Property 2',
+                    description: 'Palarivattom',
+                    bedrooms: 3,
+                    price:35000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },
+                {
+                    title: 'Property 3',
+                    description: 'Palarivattom',
+                    bedrooms: 2,
+                    price:15000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },
+{
+                    title: 'Property 4',
+                    description: 'Vennala',
+                    bedrooms: 2,
+                    price:17000,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },
+                {
+                    title: 'Property 5',
+                    description: 'Vennala',
+                    bedrooms: 3,
+                    price:25000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },
+                {
+                    title: 'Property 20',
+                    description: 'Palarivattom',
+                    bedrooms: 2,
+                    price:18000,
+                    image: 'https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg'
+                },
+{
+                    title: 'Property 7',
+                    description: 'Vazhakala',
+                    bedrooms: 4,
+                    price:32000,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },
+                {
+                    title: 'Property 8',
+                    description: 'Vennala',
+                    bedrooms: 1,
+                    price:10000,
+                    image: 'https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg'
+                },
+                {
+                    title: 'Property 9',
+                    description: 'Palarivattom',
+                    bedrooms: 5,
+                    price:55000,
+                    image: 'property3.jpg'
+                },
+                {
+                    title: 'Property 10',
+                    description: 'Vennala',
+                    bedrooms: 1,
+                    price:8000,
+                    image: 'property3.jpg'
+                }
+				,
+                {
+                    title: 'Property 11',
+                    description: 'Vazhakala',
+                    bedrooms: 2,
+                    price:15000,
+                    image: 'https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg'
+                },
+                {
+                    title: 'Property 18',
+                    description: 'Palarivattom',
+                    bedrooms: 5,
+                    price:35000,
+                    image: 'property3.jpg'
+                },
+                {
+                    title: 'Property 13',
+                    description: 'Palarivattom',
+                    bedrooms: 5,
+                    price:38000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },
+                {
+                    title: 'Property 14',
+                    description: 'Vazhakala',
+                    bedrooms: 1,
+                    price:11500,
+                    image: 'property3.jpg'
+                },
+                {
+                    title: 'Property 15',
+                    description: 'Palarivattom',
+                    bedrooms: 5,
+                    price:55000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 16',
+                    description: 'Palarivattom',
+                    bedrooms: 2,
+                    price:20000,
+                    image: 'https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg'
+                },{
+                    title: 'Property 17',
+                    description: 'Vennala',
+                    bedrooms: 1,
+                    price:12000,
+                    image: 'property3.jpg'
+                },
+{
+                    title: 'Property 12',
+                    description: 'Vennala',
+                    bedrooms: 4,
+                    price:36000,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },
+{
+                    title: 'Property 19',
+                    description: 'Palarivattom',
+                    bedrooms: 4,
+                    price:40000,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },
+{
+                    title: 'Property 6',
+                    description: 'Vennala',
+                    bedrooms: 4,
+                    price:45000,
+                    image: 'https://www.malappuramproperty.com/img_property/v3fqoexc7gno8i.jpg'
+                },{
+                    title: 'Property 21',
+                    description: 'Palarivattom',
+                    bedrooms: 1,
+                    price:7000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 22',
+                    description: 'Vytilla',
+                    bedrooms: 2,
+                    price:18000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },{
+                    title: 'Property 23',
+                    description: 'Palarivattom',
+                    bedrooms: 3,
+                    price:20000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 24',
+                    description: 'Vytilla',
+                    bedrooms: 3,
+                    price:21000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 25',
+                    description: 'Vytilla',
+                    bedrooms: 4,
+                    price:32000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Palarivattom',
+                    description: 'Vazhakala',
+                    bedrooms: 5,
+                    price:40000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },{
+                    title: 'Property 27',
+                    description: 'Vytilla',
+                    bedrooms: 1,
+                    price:5000,
+                    image: 'https://www.bhg.com/thmb/H9VV9JNnKl-H1faFXnPlQfNprYw=/1799x0/filters:no_upscale():strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg'
+                },{
+                    title: 'Property 28',
+                    description: 'Vytilla',
+                    bedrooms: 3,
+                    price:40000,
+                    image: 'https://img.onmanorama.com/content/dam/mm/en/lifestyle/decor/images/2023/6/1/house-middleclass.jpg'
+                },{
+                    title: 'Property 29',
+                    description: 'Vytilla',
+                    bedrooms: 4,
+                    price:32000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 30',
+                    description: 'Vazhakala',
+                    bedrooms: 5,
+                    price:50000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 31',
+                    description: 'Vytilla',
+                    bedrooms: 2,
+                    price:22000,
+                    image: 'https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg'
+                },{
+                    title: 'Property 32',
+                    description: 'Vazhakala',
+                    bedrooms: 3,
+                    price:23000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 33',
+                    description: 'Palarivattom',
+                    bedrooms: 4,
+                    price:28000,
+                    image: 'property3.jpg'
+                },{
+                    title: 'Property 34',
+                    description: 'Palarivattom',
+                    bedrooms: 5,
+                    price:43000,
+                    image: 'property3.jpg'
+                }
+
+
+
+
+
+
+
+            ];
+            const filteredProperties = properties.filter(property => property.bedrooms === selectedBedrooms && property.price<= costRange);
+            // Clear previous property listings
+            document.getElementById('property-listings').innerHTML = '';
+
+            // Loop through filtered properties and create flip cards
+            if (filteredProperties.length > 0) {
+            filteredProperties .forEach(property => {
+                const flipCard = `
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <p class="title">${property.title}</p>
+                                <p>${property.description}</p>
+                                <p>${property.price}</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p class="title">${property.title}</p>
+                                <img src="${property.image}" alt="${property.title}" class="property-image">
+                                <p>Additional info or actions here</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Append flip card to property listings
+                document.getElementById('property-listings').innerHTML += flipCard;
+            });
+        }else {
+        // Update the JavaScript function to display the message using the newly created class
+        document.getElementById('property-listings').innerHTML = '<p class="no-property-found">No properties found matching the selected criteria.</p>';
+
+        }
+      }
+
+      fetch('/api/properties', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(propertyData),
+})
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .post {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .post-header h2 {
+      margin: 0;
+      color: #555;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .comment {
+      border: 1px solid #ddd;
+      padding: 5px 10px;
+      margin-top: 5px;
+      border-radius: 3px;
+      background-color: #f9f9f9;
+    }
+
+    .comment-actions {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .btn {
+      padding: 5px 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #555;
+    }
+
+    body {
+    font-family: 'DM Sans', sans-serif;
+    background-color:  #6e4081;
+    color: #f6bd60;
+
+    position: relative;
+ /* Reset default margin */
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for spacing */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.logo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+.text {
+    vertical-align: middle;
+}
+
+.cont-1 {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+nav {
+    margin: 2px auto 0;
+    top: 5px;
+    right: 370px;
+    position: fixed;
+    width: 710px;
+    height: 50px;
+    background-color:black;
+    border-radius: 8px;
+    font-size: 0;
+}
+
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+a:nth-child(1) {
+    width: 100px;
+}
+
+a:nth-child(2) {
+    width: 110px;
+}
+
+a:nth-child(3) {
+    width: 100px;
+}
+
+a:nth-child(4) {
+    width: 160px;
+}
+
+a:nth-child(5) {
+    width: 120px;
+}
+
+a:nth-child(6) {
+    width: 120px;
+}
+
+nav .start-home,
+a:nth-child(1):hover~.animation {
+    width: 100px;
+    left: 0;
+    background-color: #1abc9c;
+}
+
+nav .start-aconnect,
+a:nth-child(2):hover~.animation {
+    width: 110px;
+    left: 100px;
+    background-color: #e74c3c;
+}
+
+nav .start-house,
+a:nth-child(3):hover~.animation {
+    width: 100px;
+    left: 210px;
+    background-color: #3498db;
+}
+
+nav .start-feedback,
+a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 310px;
+    background-color: #9b59b6;
+}
+
+nav .start-review,
+a:nth-child(5):hover~.animation {
+    width: 120px; /* Corrected width */
+    left: 470px; /* Adjusted left value */
+    background-color: #e67e22;
+}
+
+nav .start-contact,
+a:nth-child(6):hover~.animation {
+    width: 140px; /* Corrected width */
+    left: 590px; /* Adjusted left value */
+    background-color: #b3dd1b;
+}
+    .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          }
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+    <body>
+        <img src="https://www.shareicon.net/data/512x512/2016/09/01/822711_user_512x512.png" alt="Profile Picture" class="profile-pic">
+              <img src="https://static.vecteezy.com/system/resources/previews/009/329/923/non_2x/rcc-letter-logo-design-on-black-background-rcc-creative-initials-letter-logo-concept-rcc-letter-design-vector.jpg" alt="Logo" class="logo" >
+              <strong>RSET Community Centre</strong>
+       <nav>
+        <a href="home.html">Home</a>
+        <a href="posts.html">Posts</a>
+        <a href="users.html">Users</a>
+        <a href="restaurants.html">Add Restaurants</a>
+        <a href="contact.html">Contact</a>
+        <div class="animation start-feedback"></div>
+      </nav>
+
+
+  <div class="container">
+    <h1>RCC Admin Panel</h1>
+    <h2>Welcome Admin</h2>
+    <div class="post">
+      <div class="post-header">
+        <h2>Post Title</h2>
+        <div class="post-actions">
+          <button class="btn" onclick="removePost(this)">Remove Post</button>
+        </div>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="comments">
+        <div class="comment">
+          <p>Comment 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div class="comment-actions">
+            <button class="btn" onclick="removeComment(this)">Remove Comment</button>
+          </div>
+        </div>
+        <div class="comment">
+          <p>Comment 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div class="comment-actions">
+            <button class="btn" onclick="removeComment(this)">Remove Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function removePost(btn) {
+      // Functionality to remove the entire post
+      var post = btn.closest(".post");
+      post.parentNode.removeChild(post);
+      alert("Post removed!");
+    }
+
+    function removeComment(btn) {
+      // Functionality to remove a specific comment
+      var comment = btn.closest(".comment");
+      comment.parentNode.removeChild(comment);
+      alert("Comment removed!");
+    }
+  </script>
+</body>
+</html>

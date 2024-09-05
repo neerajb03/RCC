@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>contact</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #023047;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-container {
+    width: 420px;
+    /* Set the border color here */
+    border: 1px solid #219ebc;
+    padding: 32px 24px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #ffeba7;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    background-color:#219ebc;
+  }
+
+  .form-container button:active {
+    scale: 0.95;
+  }
+
+  .form-container .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .form-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffeba7 ;
+    font-weight: 600;
+    font-size: 12px bold;
+  }
+
+  .form-container .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #010101;
+    font-family: inherit;
+    background-color: transparent;
+    border: 1px solid black;
+  }
+
+  .form-container .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    resize: none;
+    color: #fff;
+    height: 96px;
+    border: 1px solid #023047;
+    background-color: transparent;
+    font-family: inherit;
+  }
+
+  .form-container .form-group input::placeholder {
+    opacity: 0.5;
+  }
+
+  .form-container .form-group input:focus {
+    outline: none;
+    border-color: #FFFFFF;
+  }
+
+  .form-container .form-group textarea:focus {
+    outline: none;
+    border-color: #FFFFFF;
+  }
+
+  .form-container .form-submit-btn {
+    font-family: inherit ;
+    color: black;
+    font-weight: 600;
+    width: 40%;
+    background: #ffeba7;
+    border: 1px solid #ffeba7;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .form-container .form-submit-btn:hover {
+    background-color: #023047;
+    border-color: #023047;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for spacing */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.logo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 100%;
+}
+
+.text {
+    vertical-align: middle;
+}
+
+.cont-1 {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+  position: fixed;
+  top: 12px;
+  right: 15px;
+  z-index: 20000;
+  border-radius: 50%;
+  width: 57px;
+  height: 55px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.dropdown-menu {
+  position: fixed;
+  top: 70px;
+  right: 50px;
+  background-color: #f2c513;
+  border-radius: 4px;
+  padding: 8px 0;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f9f9f9 ;
+  transform: translateX(5px);
+  transition: transform 0.5s
+}
+nav {
+    margin: 2px auto 0;
+    top: 5px;
+    right: 370px;
+    position: fixed;
+    width: 710px;
+    height: 50px;
+    background-color:black;
+    border-radius: 8px;
+    font-size: 0;
+}
+
+nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 16px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+}
+
+a:nth-child(1) {
+    width: 100px;
+}
+
+a:nth-child(2) {
+    width: 110px;
+}
+
+a:nth-child(3) {
+    width: 100px;
+}
+
+a:nth-child(4) {
+    width: 160px;
+}
+
+a:nth-child(5) {
+    width: 120px;
+}
+
+a:nth-child(6) {
+    width: 120px;
+}
+
+nav .start-home,
+a:nth-child(1):hover~.animation {
+    width: 100px;
+    left: 0;
+    background-color: #1abc9c;
+}
+
+nav .start-aconnect,
+a:nth-child(2):hover~.animation {
+    width: 110px;
+    left: 100px;
+    background-color: #e74c3c;
+}
+
+nav .start-house,
+a:nth-child(3):hover~.animation {
+    width: 100px;
+    left: 210px;
+    background-color: #3498db;
+}
+
+nav .start-feedback,
+a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 310px;
+    background-color: #9b59b6;
+}
+
+nav .start-review,
+a:nth-child(5):hover~.animation {
+    width: 120px; /* Corrected width */
+    left: 470px; /* Adjusted left value */
+    background-color: #e67e22;
+}
+
+nav .start-contact,
+a:nth-child(6):hover~.animation {
+    width: 140px; /* Corrected width */
+    left: 590px; /* Adjusted left value */
+    background-color: #b3dd1b;
+}
+.center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          }
+
+</style>
+</head>
+<body>
+  <div>
+  <div style="background-color: #219ebc; border-radius: 40px ; position:relative; padding: 1px;">
+    <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+    <div class="dropdown-menu" id="dropdownMenu">
+      <!-- <a href="#">Username</a> -->
+      <a href="index.html">Logout</a>
+  </div>
+
+ <nav>
+  <a href="home.html">Home</a>
+  <a href="aconnect.html">Query Hub</a>
+  <a href="Rentals.html">Home rent</a>
+  <a href="feedback.html">Feedback</a>
+  <a href="FReview.html">Restaurant</a>
+  <a href="contact.html">Contact</a>
+  <div class="animation start-contact"></div>
+</nav>
+</div>
+<form action="/submit_contact" method="post">
+<div class="form-container">
+      <center><h1 style="margin-bottom: 10px;">Keep in touch</h1></center>
+      <form class="form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" required="">
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required="">
+        </div>
+        <div class="form-group">
+          <label for="textarea">How Can We Help You?</label>
+          <input name="textarea" id="textarea" rows="10" cols="50" required="" />  
+        </div>
+        <div class="button">
+        <button class="form-submit-btn" type="submit">Submit</button>
+        </div>
+      </form>
+    </form>
+    </div>
+    <script>
+       document.getElementById("profilePic").addEventListener("click", function() {
+    document.getElementById("dropdownMenu").classList.toggle("show");
+  });
+    </script>
+</body>
+</html>
